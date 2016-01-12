@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="gemStore">
+    <head>
+        <meta charset="UTF-8">
+        <title>CodeSchool Ejemplo</title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <script type="application/javascript" src="js/angular.min.js"></script>
+        <script type="application/javascript" src="app.js"></script>
+    </head>
+
+    <body class="container" ng-controller="StoreController as store">
+        <div class="product row" ng-repeat="product in store.product">
+            <h3>
+                {{product.name}}
+                <em class="pull-right">{{product.price}}</em>
+            </h3>
+            <button ng-show="store.product.canPurchase">Add to Cart</button>
+        </div>
+    </body>
+</html>
