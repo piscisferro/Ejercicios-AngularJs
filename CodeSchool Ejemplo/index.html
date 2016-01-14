@@ -7,14 +7,89 @@
         <script type="application/javascript" src="js/angular.min.js"></script>
         <script type="application/javascript" src="app.js"></script>
     </head>
+    
+    <!-- Las clases son de Bootstrap! En el body iniciamos el controller de AngularJS-->
+    <body ng-controller="StoreController as store">
+      
+      <div class="list-group">
+            <!-- ng-repeat para recorrer un array. -->
+            <div class="list-group-item" ng-repeat="product in store.product">
 
-    <body class="container" ng-controller="StoreController as store">
-        <div class="product row" ng-repeat="product in store.product">
-            <h3>
-                {{product.name}}
-                <em class="pull-right">{{product.price}}</em>
-            </h3>
-            <button ng-show="store.product.canPurchase">Add to Cart</button>
+               <!-- Atencion, una vez dentro de store.product, ahora seleccionamos los atributos de product (es decir hemos
+               "bajado" al hijo de store, por lo tanto ya no se pone store.product, sino product.atributo) -->
+                <h3>
+                   <!-- Nombre del producto -->
+                    {{product.name}}
+                    <!-- Precio del producto -->
+                    <em class="pull-right">{{product.price | currency}}</em>
+                </h3>
+
+                <!-- Galeria (bootstrap) de imagenes ng-show nos muestra la galeria solo si hay imagenes -->
+                <div class="gallery" ng-show="product.images.length" ng-controller="GalleryController as gallery">
+                   <!-- Imagen principal -->
+                    <img class="img img-circle img-thumbnail center-block" ng-src="{{product.images[gallery.current]}}"/>
+
+                    <!-- imagenes para seleccionar -->
+                    <ul class="clearfix">
+                       <!-- Aqui recorremos el array de imagenes, por lo tanto como anteriormente, pasaremos de product.images a image -->
+                        <li class="small-image pull-left thumbnail" ng-repeat="image in product.images" >
+                            <img ng-src="{{image}}" />
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Boton que solo se muestra si el producto se puede comprar -->
+                <button class="btn btn-danger" ng-show="product.canPurchase">Add to Cart</button>
+                
+                
+                <!-- Section con las pestañas le añadimos el controlador de las pestañas TabController -->
+                <section class="tab" ng-controller="TabController as tab">
+                    <ul class="nav nav-pills">
+                       
+                       <!-- Primera pestaña descripcion. Al <li> le añadimos ng-class y la funcion isSet(1) para añadirle la clase
+                       "active" cuando la pestaña seleccionada sea la misma que 1, la de este Li-->
+                        <li ng-class=" {active:tab.isSet(1)}">
+                           
+                           <!-- Le añadimos al hipervinculo que, al clicar sobre el, seleccione la pestaña numero 1 -->
+                            <a href ng-click="tab.setTab(1)">Description</a>
+                        </li>
+                        
+                        <!-- Segunda pestaña Specs. Al <li> le añadimos ng-class y la funcion isSet(2) para añadirle la clase
+                       "active" cuando la pestaña seleccionada sea la misma que 2, la de este Li-->
+                        <li ng-class="{active:tab.isSet(2)}">
+                           
+                           <!-- Le añadimos al hipervinculo que, al clicar sobre el, seleccione la pestaña numero 2 -->
+                            <a href ng-click="tab.setTab(2)">Specs</a>
+                        </li>
+                        
+                        <!-- Tercera pestaña Reviews. Al <li> le añadimos ng-class y la funcion isSet(3) para añadirle la clase
+                       "active" cuando la pestaña seleccionada sea la misma que 3, la de este Li-->
+                        <li ng-class="{active:tab.isSet(3)}">
+                           
+                           <!-- Le añadimos al hipervinculo que, al clicar sobre el, seleccione la pestaña numero 3 -->
+                            <a href ng-click="tab.setTab(3)">Reviews</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Div que contiene la descripcion solo se mostrara si la pestaña seleccionada es la 1 -->
+                    <div ng-show="tab.isSet(1)">
+                        <h4>Description</h4>
+                        <blockquote>{{product.description}}</blockquote>
+                    </div>
+                    
+                    <!-- Div que contiene la Specs solo se mostrara si la pestaña seleccionada es la 2 -->
+                    <div ng-show="tab.isSet(2)">
+                        <h4>Specs</h4>
+                        <blockquote>Shine: {{product.shine}}</blockquote>
+                    </div>
+                    
+                    <!-- Div que contiene las Revews solo se mostrara si la pestaña seleccionada es la 3 -->
+                    <div ng-show="tab.isSet(3)">
+                        <h4>Reviews</h4>
+                        <blockquote></blockquote>
+                    </div>
+                </section>
+            </div>
         </div>
     </body>
 </html>

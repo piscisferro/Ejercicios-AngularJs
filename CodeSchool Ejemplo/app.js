@@ -1,8 +1,64 @@
 (function(){
     // Producto y atributos del producto en formato JSON 
-    var gems = [{ name: 'Azurite', price: 2.95, canPurchase: true }, 
-               { name: "BloodStone", price: 5.95, canPurchase: false}, 
-               { name: "Zircon", price: 3.95, canPurchase: true}];
+    var gems = [{ 
+                    name: 'Azurite',
+                    description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
+                    canPurchase: true,
+                    shine: 8,
+                    price: 110.50,
+                    rarity: 7,
+                    color: '#CCC',
+                    faces: 14,
+                    images: [
+                        "images/gem-02.gif",
+                        "images/gem-05.gif",
+                        "images/gem-09.gif"
+                    ],
+        
+                    reviews : [
+                       
+                       "None Yet",
+                   ]
+        
+                }, { 
+                    name: 'Bloodstone',
+                    description: "Origin of the Bloodstone is unknown, hence its low value. It has a very high shine and 12 sides, however.",
+                    canPurchase: false,
+                    shine: 9,
+                    price: 22.90,
+                    rarity: 6,
+                    color: '#EEE',
+                    faces: 12,
+                    images: [
+                        "images/gem-01.gif",
+                        "images/gem-03.gif",
+                        "images/gem-04.gif"
+                    ],
+                    
+                    reviews : [
+                       
+                       "None Yet",
+                   ]
+                    
+                }, { 
+                   name: 'Zircon',
+                   description: "Zircon is our most coveted and sought after gem. You will pay much to be the proud owner of this gorgeous and high shine gem.",
+                   canPurchase: true,
+                   shine: 70,
+                   price: 1100,
+                   rarity: 2,
+                   color: '#000',
+                   faces: 6,
+                   images: [
+                       "images/gem-06.gif",
+                       "images/gem-07.gif",
+                       "images/gem-10.gif"
+                   ],
+                   reviews : [
+                       
+                       "None Yet",
+                   ]
+               }];
     
     // Modulo angular de la APP 
     var app = angular.module('gemStore', []);
@@ -12,5 +68,37 @@
         // Conectamos el controlador de la app con gem a traves de producto.
         this.product = gems;
     });
+    
+    // Controlador para la seleccion de pestañas
+    app.controller('TabController', function(){
+        
+        // Inicializamos el valor para que nos muestre la primera pestaña al cargar
+        this.tab = 1;
+
+        // Funcion para seleccionar la pestaña, pasamos por parametro el valor que recogemos del HTML
+        this.setTab = function(tab){
+          this.tab = tab;
+        };
+
+        // Funcion para saber si esta seleciconada la pestaña pasamos por parametro el valor que recogemos por HTML
+        this.isSet = function(tab) {
+
+            return this.tab === tab;
+        };
+    });
+    
+    
+    // Controlador para la Galeria
+    app.controller ("GalleryController", function() {
+        // Inicializamos el valor a 0
+        this.current= 0;
+        
+        // Metodo setCurrent para cambiar el valor de current
+        this.setCurrent = function(value) {
+            // Si es nulo current = 0, sino coge el valor de value
+            this.current = value || 0;
+    };
+    
+  });
   
 })();
