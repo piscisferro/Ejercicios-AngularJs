@@ -15,10 +15,17 @@
                         "images/gem-09.gif"
                     ],
         
-                    reviews : [
-                       
-                       "None Yet",
-                   ]
+                    reviews : [{
+                        stars: 5,
+                        body: "I love this gem!",
+                        author: "joe@example.org",
+                        createdOn: 1397490980837
+                      }, {
+                        stars: 1,
+                        body: "This gem sucks.",
+                        author: "tim@example.org",
+                        createdOn: 1397490980837
+                      }]
         
                 }, { 
                     name: 'Bloodstone',
@@ -35,10 +42,17 @@
                         "images/gem-04.gif"
                     ],
                     
-                    reviews : [
-                       
-                       "None Yet",
-                   ]
+                    reviews : [{
+                        stars: 3,
+                        body: "I think this gem was just OK, could honestly use more shine, IMO.",
+                        author: "JimmyDean@example.org",
+                        createdOn: 1397490980837
+                      }, {
+                        stars: 4,
+                        body: "Any gem with 12 faces is for me!",
+                        author: "gemsRock@example.org",
+                        createdOn: 1397490980837
+                      }]
                     
                 }, { 
                    name: 'Zircon',
@@ -54,22 +68,40 @@
                        "images/gem-07.gif",
                        "images/gem-10.gif"
                    ],
-                   reviews : [
-                       
-                       "None Yet",
-                   ]
+                   reviews : [{
+                    stars: 1,
+                    body: "This gem is WAY too expensive for its rarity value.",
+                    author: "turtleguyy@example.org",
+                    createdOn: 1397490980837
+                  }, {
+                    stars: 1,
+                    body: "BBW: High Shine != High Quality.",
+                    author: "LouisW407@example.org",
+                    createdOn: 1397490980837
+                  }, {
+                    stars: 1,
+                    body: "Don't waste your rubles!",
+                    author: "nat@example.org",
+                    createdOn: 1397490980837
+                  }]
                }];
     
-    // Modulo angular de la APP 
+    
+    /////////////////////////////////////////
+    /////    Modulo angular de la APP   ///// 
     var app = angular.module('gemStore', []);
     
-    // Controlador de la APP
+    
+    /////////////////////////////////////
+    /////   Controlador de la APP   /////
     app.controller("StoreController", function(){
         // Conectamos el controlador de la app con gem a traves de producto.
         this.product = gems;
     });
     
-    // Controlador para la seleccion de pestañas
+    
+    /////////////////////////////////////////////////////////
+    /////   Controlador para la seleccion de pestañas   /////
     app.controller('TabController', function(){
         
         // Inicializamos el valor para que nos muestre la primera pestaña al cargar
@@ -88,7 +120,8 @@
     });
     
     
-    // Controlador para la Galeria
+    /////////////////////////////////////////////
+    /////    Controlador para la Galeria    /////
     app.controller ("GalleryController", function() {
         // Inicializamos el valor a 0
         this.current= 0;
@@ -97,8 +130,28 @@
         this.setCurrent = function(value) {
             // Si es nulo current = 0, sino coge el valor de value
             this.current = value || 0;
-    };
+        };
     
-  });
+    });
+    
+    
+    //////////////////////////////////////////////
+    /////    Controlador para las Reviews    /////
+    app.controller("ReviewController", function(){
+        // Inicializamos la review, tomara su valor del formulario HTML de ng-model
+        this.review = {};
+        
+        // Creamos el metodo addReview param product que pasaremos por HTML 
+        this.addReview = function(product) {
+            // Añadimos la propiedad createdOn a review
+            this.review.createdOn = Date.now();
+            
+            // En product(que en realidad es el json Gems) -> review, añadimos la review al array
+            product.reviews.push(this.review);
+            
+            // Reinicializamos a 0 para reiniciar los campos del formulario
+            this.review = {};
+        };
+    });
   
 })();
