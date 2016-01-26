@@ -73,10 +73,9 @@
                     </ul>
                     
                     <!-- Div que contiene la descripcion solo se mostrara si la pestaña seleccionada es la 1 -->
-                    <div ng-show="tab.isSet(1)">
-                        <h4>Description</h4>
-                        <blockquote>{{product.description}}</blockquote>
-                    </div>
+                    <product-description ng-show="tab.isSet(1)">
+                        
+                    </product-description>
                     
                     <!-- Div que contiene la Specs solo se mostrara si la pestaña seleccionada es la 2 -->
                     <div ng-show="tab.isSet(2)">
