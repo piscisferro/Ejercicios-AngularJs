@@ -4,6 +4,51 @@ header("Content-Type: application/json; charset=UTF-8");
 
 
 include "conexion.php";
+
+
+$consulta = "SELECT idartista, nombre
+			 FROM artista 
+			 ORDER BY nombre ";	
+
+$resultado = mysql_query($consulta);
+
+
+while($fila=mysql_fetch_array($resultado)) {
+    
+    $consulta2 = "SELECT idalbum, nombre
+                 FROM album
+                 WHERE idartista=" . $fila["idartista"] . " 
+			     ORDER BY nombre ";  
+    
+    
+    $resultado2 = mysql_query($consulta2);
+    
+    while($fila2=mysql_fetch_array($resultado2)) {
+        
+        $consulta3 = "SELECT nombre,reproducciones
+             FROM cancion
+			 WHERE idalbum=" . $fila2["idalbum"] . " 
+			 ORDER BY nombre ";
+        
+        $resultado3 = mysql_query($consulta3);
+        
+        while($fila3=mysql_fetch_array($resultado3)) {
+            
+            $fila2["canciones"][] = $fila3;
+            
+        }
+        
+        $fila["discografia"][] = $fila2;
+        
+    }
+    
+    $json[] = $fila;
+    
+}
+
+echo json_encode($json);
+
+/*
 $consulta = "SELECT idartista, nombre
 			 FROM artista 
 			 ORDER BY nombre ";		 
@@ -55,5 +100,9 @@ while($fila=mysql_fetch_array($resultado)){
 
 $datosjson .="]";
 
-echo $datosjson;
+echo $datosjson; */
+
+
+
+
 ?>

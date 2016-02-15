@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html ng-app="usuariosapp">
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+  <script src="angular.min.js"></script>
+  <script src="app2.js"></script>
+ <style>
+            #dv1{
+                border:1px solid #DBDCE9; margin-left:auto;
+                margin-right:auto;width:220px;
+                border-radius:7px;padding: 25px;
+            }
+
+.ng-invalid.ng-dirty {
+border-color: #FA787E;
+}
+
+.ng-valid.ng-dirty {
+border-color: #78FA89;
+}
+
+        </style>
+    </head>
+    <body ng-controller="usuariosController">
+        <div id='dv1'>
+            <form name="formularioUsuario" ng-submit="formularioUsuario.$valid && nuevoUsuario()" novalidate> 
+           
+                <h2>Sigup Form</h2>
+                <div>
+                    <label>Name</label> 
+                    <input type="text" ng-model="username" placeholder="User Name" style='margin-left: 22px;' required> 
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input type="text" ng-model="useremail" placeholder="Email" style='margin-left: 22px;' required> 
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input type="password" ng-model="userpassword" placeholder="Password" required>
+                </div>
+                <input type="submit" value="Nuevo" style='margin-left: 63px;margin-top:10px'>
+            </form>
+        </div>
+
+<div > 
+
+<table border="1">
+<tr>
+<th>Name</th><th>Email</th><th>Pass</th></tr>
+  <tr ng-repeat="usuario in usuarios" >
+    <td>{{ usuario.name }}</td>
+    <td>{{ usuario.email }}</td>
+	<td>{{ usuario.pass }}</td>    
+  </tr>
+</table>
+
+</div>
+
+
+</body>
+</html>
