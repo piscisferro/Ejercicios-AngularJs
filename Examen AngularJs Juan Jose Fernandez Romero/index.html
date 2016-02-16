@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html ng-app="tiendaOnline">
+    <head>
+        <meta charset="utf-8">
+        <title>Tienda Online</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="angular.min.js"></script>
+        <script src="app.js"></script>
+    </head>
+
+    <body>
+        <div class="contenedor" ng-controller="listadoController">
+            <section class="caja">
+                <p class="titulo">Tienda Online</p>
+                <listado-categorias></listado-categorias>
+            </section>
+            <section class="caja">
+                <form class="formulario" name="categoriaForm" ng-submit="categoriaForm.$valid && nuevaCategoria()" novalidate>
+                   <fieldset>
+                        <legend>Nueva Categoria</legend>
+                        <p>Nombre</p> <input type="text" ng-model="nuevoNombre" placeholder="Nombre" minlength="2" required>
+                        <input type="submit" value="Crear">
+                    </fieldset>
+                </form>
+            </section>
+            
+        </div>
+    </body>
+</html>

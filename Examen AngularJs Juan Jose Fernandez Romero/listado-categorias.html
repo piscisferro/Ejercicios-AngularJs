@@ -1,0 +1,13 @@
+<div ng-repeat="categoria in tienda" >
+    <div class="categoria" ng-class="{seleccion:mostrarProductos}" ng-click="mostrarProductos= !mostrarProductos">
+       <p class="tituloCategoria">{{ categoria.nombre }}</p>
+        <div ng-repeat="producto in categoria.productos">
+            <div class="producto" ng-show="mostrarProductos && {{ producto.cantidad == 1 }}">{{ producto.nombre | uppercase }}</div>
+        </div>
+    
+    </div>
+    
+</div>
+<div class="categoria" > 
+        {{ nuevoNombre }} 
+</div>

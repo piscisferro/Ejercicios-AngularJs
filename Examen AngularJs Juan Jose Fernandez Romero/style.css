@@ -1,0 +1,83 @@
+body{
+	text-align:center;
+    background-color: rgb(240, 240, 240);
+}
+
+.titulo {
+    
+    font-size: 1.5em;
+    border-bottom: 2px solid black;
+    font-style: italic;
+    margin-bottom: 5px;
+    
+}
+
+.categoria {
+    
+    border: 1px solid black;
+    margin-bottom: 5px;
+    
+}
+
+.tituloCategoria {
+    
+    width: 200px;
+    font-size: 1.1em;
+    border-bottom: 2px solid black;
+    font-style: italic;
+    margin: 0 auto;
+    margin-bottom: 8px;
+    
+}
+
+.producto {
+    
+    margin: 5px auto;
+    
+}
+
+.seleccion {
+    
+    background-color: lightblue;
+    
+}
+
+.caja{
+	width:250px;
+	margin: 0 auto 25px auto;
+}
+
+.mostrarProducto {
+    
+    background-color: lightblue;
+    
+}
+
+input.ng-dirty.ng-invalid {
+    
+    box-shadow: 0px 0px 7px 0px rgb(206, 0, 0);
+    
+}
+
+p {
+    
+    margin: 0 0;
+}
+
+input {
+    
+    margin: 5px 0;
+}
+
+.seccionForm {
+	
+    margin-top: 25px;
+    
+}
+
+.formulario {
+	
+    display: inline-block;
+    width: 250px;
+    
+}
